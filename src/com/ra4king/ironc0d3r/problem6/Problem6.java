@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import com.ra4king.ironc0d3r.Utility;
 
 /**
+ * This problem required us to find the closest power-of-two value to the given input integer, picking the higher value
+ * in case of equal distances.
+ *
  * @author Roi Atalla
  */
 public class Problem6 {
@@ -22,6 +25,12 @@ public class Problem6 {
 		}
 	}
 
+	/**
+	 * Simple algorithm of taking the highest 1 bit of the input integer and testing against it and the bit shifted to the left.
+	 * 
+	 * @param i The input integer to test.
+	 * @return The closest power-of-two integer, with the higher value given in case of equal distances.
+	 */
 	private static int closestPOW(int i) {
 		int a = Integer.highestOneBit(i);
 

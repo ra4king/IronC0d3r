@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import com.ra4king.ironc0d3r.Utility;
 
 /**
+ * This problem required us to compress each given String by pre-pending the number of occurrences of each sequence characters.
+ * 
+ * aaaaccbbb -> 4a2c3b
+ * bffffccezzzzz -> b4f2ce5z
+ * 
  * @author Roi Atalla
  */
 public class Problem10 {

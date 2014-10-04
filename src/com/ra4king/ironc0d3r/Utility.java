@@ -1,6 +1,7 @@
 package com.ra4king.ironc0d3r;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -9,21 +10,14 @@ import java.util.ArrayList;
  * @author Roi Atalla
  */
 public class Utility {
-	public static String readAll(InputStream in) throws Exception {
-		StringBuilder sb = new StringBuilder();
-
-		try(BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"))) {
-			String line;
-			while((line = reader.readLine()) != null)
-				sb.append(line).
-
-				                 append('\n');
-		}
-
-		return sb.toString();
-	}
-
-	public static ArrayList<String> readLines(InputStream in) throws Exception {
+	/**
+	 * Reads each line into a List.
+	 *
+	 * @param in The Input Stream to read from.
+	 * @return The list of lines
+	 * @throws IOException
+	 */
+	public static ArrayList<String> readLines(InputStream in) throws IOException {
 		ArrayList<String> lines = new ArrayList<>();
 
 		try(BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"))) {

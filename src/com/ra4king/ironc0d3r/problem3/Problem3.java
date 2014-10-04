@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import com.ra4king.ironc0d3r.Utility;
 
 /**
+ * This problem required us to find the centroid of all the pairs of points given. The centroid is simply point containing
+ * the average of the X coordinates and the average of the Y coordinates.
+ * <p>
+ * (0,0),(0,2) -> (0,1)
+ * (1,1),(4,5),(7,6) -> (4,3)
+ *
  * @author Roi Atalla
  */
 public class Problem3 {
@@ -24,6 +30,12 @@ public class Problem3 {
 		}
 	}
 
+	/**
+	 * Split by commas, trim parenthesis, every 2 is a pair, add and divide, simple stuff.
+	 *
+	 * @param input String containing coordinates.
+	 * @return String containing centroid pair.
+	 */
 	private static String findCentroid(String input) {
 		String[] parts = input.split(",");
 		if(parts.length > 0) {
@@ -39,9 +51,11 @@ public class Problem3 {
 				y += clean(parts[a + 1]);
 			}
 
+			// Rounded to the nearest tenth
 			String formattedX = String.format("%.1f", (double)x / (parts.length / 2));
 			String formattedY = String.format("%.1f", (double)y / (parts.length / 2));
 
+			// The requirement wanted numbers ending with ".0" to leave it out
 			if(formattedX.endsWith(".0")) {
 				formattedX = formattedX.substring(0, formattedX.indexOf('.'));
 			}
@@ -55,6 +69,12 @@ public class Problem3 {
 		return null;
 	}
 
+	/**
+	 * Trim whitespaces and non-characters.
+	 *
+	 * @param input String to trim.
+	 * @return Trimmed String.
+	 */
 	private static int clean(String input) {
 		input = input.trim();
 

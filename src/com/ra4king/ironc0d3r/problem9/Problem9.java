@@ -8,6 +8,12 @@ import java.util.HashMap;
 import com.ra4king.ironc0d3r.Utility;
 
 /**
+ * This problem required us to convert each spelled out number into its numerical value.
+ * <p>
+ * Fifty Four -> 54
+ * One Hundred Three Thousand Ninety Nine -> 103099
+ * Two Billion Three Million One Thousand and Two -> 2003001002
+ *
  * @author Roi Atalla
  */
 public class Problem9 {
@@ -61,6 +67,20 @@ public class Problem9 {
 		}
 	}
 
+	private void test() {
+		long i;
+		System.out.println((i = convert("Fifty Four")) + " - " + (i == 54));
+		System.out.println((i = convert("One Hundred Three Thousand Ninety Nine")) + " - " + (i == 103099));
+		System.out.println((i = convert("Two Billion Three Million One Thousand and Two")) + " - " + (i == 2003001002));
+	}
+
+	/**
+	 * For values of less than 100, I add them to an accumulator. Hundred multiplies the accumulator value by 100.
+	 * Words signifying orders greater than 100 multiply with the accumulator and the product is added to the total value.
+	 *
+	 * @param name The name String to convert.
+	 * @return The numerical value.
+	 */
 	private static long convert(String name) {
 		String[] parts = name.trim().toLowerCase().split(" ");
 

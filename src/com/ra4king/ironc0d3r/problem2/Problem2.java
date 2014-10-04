@@ -8,6 +8,16 @@ import java.util.Collections;
 import com.ra4king.ironc0d3r.Utility;
 
 /**
+ * This problem required us to sort the entire file by line by longest-chain length in descending order or alphabetically.
+ * <p>
+ * ACCTGCT        CTCCCGG
+ * CTCCCGG   -->  ACCTGCT
+ * ATCCGCT        ATCCGCT
+ * GGTCAAC        GGTCAAC
+ * <p>
+ * Side note: Unfortunately, I completed this problem after the time limit, so I did not receive the points for this
+ * problem. With this one and Problem 8, I could have potentially been in the top 4.
+ *
  * @author Roi Atalla
  */
 public class Problem2 {
@@ -29,26 +39,31 @@ public class Problem2 {
 		}
 	}
 
+	/**
+	 * Held the DNA String and its longest chain String.
+	 */
 	private static class DNAPair implements Comparable<DNAPair> {
 		private String dna;
 		private String largestChain = "";
 
+		/**
+		 * The constructor finds the longest chain.
+		 *
+		 * @param dna The DNA String.
+		 */
 		public DNAPair(String dna) {
 			this.dna = dna;
 
-			String currChain = "";
+			String currChain = String.valueOf(dna.charAt(0));
 			ArrayList<String> chains = new ArrayList<>();
-			for(int a = 0; a < dna.length(); a++) {
-				if(a == 0 || dna.charAt(a) == dna.charAt(a - 1)) {
+			for(int a = 1; a < dna.length(); a++) {
+				if(dna.charAt(a) == dna.charAt(a - 1)) {
 					currChain += dna.charAt(a);
 				}
 
-				if(a != 0 && (dna.charAt(a) != dna.charAt(a - 1) || a == dna.length() - 1)) {
-					if(currChain.length() > 1) {
-						chains.add(currChain);
-					}
-
-					currChain = "" + dna.charAt(a);
+				if(dna.charAt(a) != dna.charAt(a - 1) || a == dna.length() - 1) {
+					chains.add(currChain);
+					currChain = String.valueOf(dna.charAt(a));
 				}
 			}
 
@@ -59,14 +74,15 @@ public class Problem2 {
 			}
 		}
 
+		/**
+		 * Sorts by length in descending order otherwise alphabetically.
+		 *
+		 * @param other The other DNAPair to compare against.
+		 * @return A negative value, zero, or positive value if respectively less than, equal to, or greater than <code>other</code>.
+		 */
 		public int compareTo(DNAPair other) {
 			int d = other.largestChain.length() - largestChain.length();
-
-			if(d != 0) {
-				return d;
-			}
-
-			return largestChain.charAt(0) - other.largestChain.charAt(0);
+			return d != 0 ? d : largestChain.charAt(0) - other.largestChain.charAt(0);
 		}
 
 		public String toString() {

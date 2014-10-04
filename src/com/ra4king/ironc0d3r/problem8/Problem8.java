@@ -10,6 +10,11 @@ import java.util.Calendar;
 import com.ra4king.ironc0d3r.Utility;
 
 /**
+ * A very simple problem of counting the number of Mondays in each supplied line of ISO 8601 dates.
+ * 
+ * Side note: Unfortunately, I completed this problem after the time limit, so I did not receive the points for this
+ * problem. With this one and Problem 2, I could have potentially been in the top 4.
+ * 
  * @author Roi Atalla
  */
 public class Problem8 {
