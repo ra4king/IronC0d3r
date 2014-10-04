@@ -4,8 +4,11 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.ra4king.ironc0d3r.Utility;
+import com.sun.istack.internal.NotNull;
 
 /**
  * This problem required us to sort the entire file by line by longest-chain length in descending order or alphabetically.
@@ -24,10 +27,7 @@ public class Problem2 {
 	public static void main(String[] args) throws Exception {
 		ArrayList<String> lines = Utility.readLines(Problem2.class.getResourceAsStream("sample.txt"));//Question2_input.txt"));
 
-		ArrayList<DNAPair> pairs = new ArrayList<>();
-		for(String s : lines) {
-			pairs.add(new DNAPair(s));
-		}
+		List<DNAPair> pairs = lines.stream().map(DNAPair::new).collect(Collectors.toList());
 
 		Collections.sort(pairs);
 
@@ -67,11 +67,11 @@ public class Problem2 {
 				}
 			}
 
-			for(String s : chains) {
+			chains.stream().forEach((String s) -> {
 				if(s.length() > largestChain.length()) {
 					largestChain = s;
 				}
-			}
+			});
 		}
 
 		/**
@@ -80,7 +80,7 @@ public class Problem2 {
 		 * @param other The other DNAPair to compare against.
 		 * @return A negative value, zero, or positive value if respectively less than, equal to, or greater than <code>other</code>.
 		 */
-		public int compareTo(DNAPair other) {
+		public int compareTo(@NotNull DNAPair other) {
 			int d = other.largestChain.length() - largestChain.length();
 			return d != 0 ? d : largestChain.charAt(0) - other.largestChain.charAt(0);
 		}
